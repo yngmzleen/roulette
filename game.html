@@ -58,10 +58,8 @@
             flex-direction: column;
             align-items: center;
         }
-        .betting-controls input {
-            margin: 5px 0;
-            padding: 10px;
-            font-size: 1em;
+        .betting-controls input[type="range"] {
+            margin: 10px 0;
         }
         .betting-controls button {
             padding: 10px 20px;
@@ -100,19 +98,21 @@
     </div>
 
     <div class="betting-controls">
-        <input type="number" id="betAmount" placeholder="Enter your bet amount">
+        <input type="range" id="betRange" min="1" max="100" value="10" oninput="updateBetAmount()">
+        <div>Ставка: $<span id="betAmountDisplay">10</span></div>
         <button onclick="placeBet()">Place Bet</button>
     </div>
 
     <script>
         let balance = 1000;
 
+        function updateBetAmount() {
+            const betAmount = document.getElementById('betRange').value;
+            document.getElementById('betAmountDisplay').innerText = betAmount;
+        }
+
         function placeBet() {
-            const betAmount = parseInt(document.getElementById('betAmount').value);
-            if (isNaN(betAmount) || betAmount <= 0) {
-                alert('Please enter a valid bet amount.');
-                return;
-            }
+            const betAmount = parseInt(document.getElementById('betRange').value);
             if (betAmount > balance) {
                 alert('Insufficient balance.');
                 return;
