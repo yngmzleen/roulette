@@ -2,155 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Paper Scissors</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background-color: #f0f0f0;
-      margin: 0;
-    }
-    #overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 64px;
-      color: white;
-      visibility: hidden;
-      opacity: 0;
-      transition: visibility 0s, opacity 0.5s;
-    }
-    #overlay.win {
-      background-color: rgba(0, 255, 0, 0.5);
-    }
-    #overlay.loose {
-      background-color: rgba(255, 0, 0, 0.5);
-    }
-    #overlay.draw {
-      background-color: rgba(0, 0, 255, 0.5);
-    }
-    #game {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-    button {
-      margin: 0 10px;
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 40px;
-    }
-    #result {
-      font-size: 24px;
-      font-weight: bold;
-      margin-top: 20px;
-    }
-    #images {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-    #player-choice, #computer-choice {
-      width: 150px;
-      height: 150px;
-      margin: 0 20px;
-    }
-    .shake {
-      animation: shake 0.5s;
-      animation-iteration-count: 3;
-    }
-    @keyframes shake {
-      0% { transform: translateY(0); }
-      25% { transform: translateY(-10px); }
-      50% { transform: translateY(0); }
-      75% { transform: translateY(10px); }
-      100% { transform: translateY(0); }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<style>
+
+</style>
+
 </head>
 <body>
-  <h1>Rock Paper Scissors</h1>
+
+  <h1 class="lang-en">Rock Paper Scissors</h1>
+  <h1 class="lang-ru">Камень Ножницы Бумага</h1>
+  <div id="language-toggle">
+    <label for="language">Language:</label>
+    <input type="checkbox" id="language" class="ios-toggle" onchange="toggleLanguage(this.checked)">
+    <span class="lang-en">English</span>
+    <span class="lang-ru">Русский</span>
+  </div>
+  <div id="balance" class="lang-en">Balance: $100</div>
+  <div id="balance" class="lang-ru">Баланс: $100</div>
+  <div id="bet-area" class="lang-en">
+    <input type="number" id="bet" placeholder="Bet amount" min="1">
+  </div>
+  <div id="bet-area" class="lang-ru">
+    <input type="number" id="bet" placeholder="Ставка" min="1">
+  </div>
   <div id="images">
     <img id="player-choice" src="rock.png" alt="Player Choice">
     <img id="computer-choice" src="rock.png" alt="Computer Choice">
   </div>
   <div id="game">
-    <button onclick="playGame('rock')">Rock</button>
-    <button onclick="playGame('paper')">Paper</button>
-    <button onclick="playGame('scissors')">Scissors</button>
+    <button onclick="playGame('rock')" class="lang-en">Rock</button>
+    <button onclick="playGame('paper')" class="lang-en">Paper</button>
+    <button onclick="playGame('scissors')" class="lang-en">Scissors</button>
+    <button onclick="playGame('rock')" class="lang-ru">Камень</button>
+    <button onclick="playGame('paper')" class="lang-ru">Бумага</button>
+    <button onclick="playGame('scissors')" class="lang-ru">Ножницы</button>
   </div>
-  <p id="result"></p>
+  <p id="result" class="lang-en"></p>
+  <p id="result" class="lang-ru"></p>
   <div id="overlay"></div>
+  <button id="history" onclick="window.location.href='history.html'">View history</button>
+  <div id="rating-container">
+    <progress id="rating" value="0" max="40"></progress>
+    <p id="rating-message" class="lang-en">Your rating: <span id="current-rating">No rating</span>. Play <span id="remaining-games">3</span> more games to reach the next level.</p>
+    <p id="rating-message" class="lang-ru">Ваш рейтинг: <span id="current-rating">Нет рейтинга</span>. Сыграйте еще <span id="remaining-games">3</span> игры, чтобы перейти на следующий уровень.</p>
+  </div>
 
-  <script>
-    function playGame(playerChoice) {
-      const choices = ['rock', 'paper', 'scissors'];
-      const computerChoice = choices[Math.floor(Math.random() * 3)];
-      const playerImage = document.getElementById('player-choice');
-      const computerImage = document.getElementById('computer-choice');
-
-      // Показать камень во время анимации
-      playerImage.src = 'rock.png';
-      computerImage.src = 'rock.png';
-
-      // Добавить анимацию
-      playerImage.classList.add('shake');
-      computerImage.classList.add('shake');
-
-      // Удалить класс анимации и сменить изображения после завершения анимации
-      setTimeout(() => {
-        playerImage.classList.remove('shake');
-        computerImage.classList.remove('shake');
-
-        // Сменить изображения на выбор игрока и компьютера
-        playerImage.src = playerChoice + '.png';
-        computerImage.src = computerChoice + '.png';
-
-        // Определить и показать результат
-        const result = determineWinner(playerChoice, computerChoice);
-        document.getElementById('result').innerText = `You chose ${playerChoice}, computer chose ${computerChoice}. ${result}`;
-
-        // Показать оверлей с результатом
-        showOverlay(result);
-      }, 1500); // 3 * 0.5s = 1.5s
-    }
-
-    function determineWinner(playerChoice, computerChoice) {
-      if (playerChoice === computerChoice) {
-        return "draw";
-      }
-      if (
-        (playerChoice === 'rock' && computerChoice === 'scissors') ||
-        (playerChoice === 'scissors' && computerChoice === 'paper') ||
-        (playerChoice === 'paper' && computerChoice === 'rock')
-      ) {
-        return "win";
-      } else {
-        return "loose";
-      }
-    }
-
-    function showOverlay(result) {
-      const overlay = document.getElementById('overlay');
-      overlay.className = result;
-      overlay.innerText = result === "win" ? "Win!" : (result === "loose" ? "Loose!" : "Draw!");
-      overlay.style.visibility = 'visible';
-      overlay.style.opacity = '1';
-      setTimeout(() => {
-        overlay.style.visibility = 'hidden';
-        overlay.style.opacity = '0';
-      }, 1000); // Оверлей будет виден 1 секунду
-    }
-  </script>
+  <script src="script.js"></script>
+  
 </body>
 </html>

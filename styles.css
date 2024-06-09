@@ -1,0 +1,176 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    overflow-x: hidden; /* Disable horizontal scrolling */
+  }
+  /* Styles for English */
+  .lang-en .lang-ru {
+    display: none; /* Hide Russian text */
+  }
+  /* Styles for Russian */
+  .lang-ru .lang-en {
+    display: none; /* Hide English text */
+  }
+  #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    color: white;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s;
+  }
+  #overlay.win {
+    background-color: rgba(0, 255, 0, 0.5);
+  }
+  #overlay.loose {
+    background-color: rgba(255, 0, 0, 0.5);
+  }
+  #overlay.draw {
+    background-color: rgba(0, 0, 255, 0.5);
+  }
+  #game {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 40px;
+  }
+  #result {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  #images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  #player-choice, #computer-choice {
+    width: 150px;
+    height: 150px;
+    margin: 0 20px;
+  }
+  .shake {
+    animation: shake 0.5s;
+    animation-iteration-count: 3;
+  }
+  @keyframes shake {
+    0% { transform: translateY(0); }
+    25% { transform: translateY(-10px); }
+    50% { transform: translateY(0); }
+    75% { transform: translateY(10px); }
+    100% { transform: translateY(0); }
+  }
+  #balance {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  #bet-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  #bet-area input {
+    margin-right: 10px;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100px;
+  }
+  #history {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 40px;
+  }
+  #rating-container {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  #rating {
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+  }
+  #rating-message {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+
+#language-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 100; /* Помещаем тумблер поверх других элементов */
+  }
+
+  .ios-toggle {
+    position: relative;
+    width: 40px;
+    height: 24px;
+    -webkit-appearance: none;
+    background: #c6c6c6;
+    outline: none;
+    border-radius: 16px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
+
+  .ios-toggle:checked {
+    background: #4cd964;
+  }
+
+  .ios-toggle:before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    top: 2px;
+    left: 2px;
+    background: #fff;
+    transition: transform 0.3s;
+  }
+
+  .ios-toggle:checked:before {
+    transform: translateX(16px);
+  }
+
+  /* Дополнительные стили для адаптивности */
+  @media (max-width: 600px) {
+    /* Стили для мобильных устройств */
+    body {
+      padding: 10px; /* Добавляем отступы для мобильных устройств */
+    }
+
+    #language-toggle {
+      top: auto;
+      bottom: 10px; /* Помещаем тумблер в нижний правый угол для мобильных устройств */
+      right: 10px;
+    }
+  }

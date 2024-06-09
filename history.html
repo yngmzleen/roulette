@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game History</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      margin: 0;
+      overflow: hidden;
+    }
+    #history {
+      width: 100%;
+      max-width: 500px;
+      margin-top: 20px;
+      overflow-y: auto;
+      max-height: 60vh;
+    }
+    .history-item {
+      padding: 10px;
+      margin-bottom: 5px;
+      font-size: 14px;
+      color: white;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .win {
+      background-color: green;
+    }
+    .loose {
+      background-color: red;
+    }
+    .draw {
+      background-color: blue;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 40px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Game History</h1>
+  <div id="history"></div>
+  <button onclick="window.location.href='index.html'">Back to game</button>
+
+  <script>
+    function loadHistory() {
+      const historyElement = document.getElementById('history');
+      const storedHistory = localStorage.getItem('gameHistory');
+      if (storedHistory) {
+        const gameHistory = JSON.parse(storedHistory);
+        gameHistory.forEach(item => {
+          const historyItem = document.createElement('div');
+          historyItem.className = `history-item ${item.result}`;
+          historyItem.innerText = `You chose ${item.playerChoice}, computer chose ${item.computerChoice}. Result: ${item.result}. Time: ${item.timestamp}`;
+          historyElement.appendChild(historyItem);
+        });
+      } else {
+        historyElement.innerText = 'No game history found.';
+      }
+    }
+
+    // Загрузить историю при загрузке страницы
+    window.onload = loadHistory;
+  </script>
+</body>
+</html>
