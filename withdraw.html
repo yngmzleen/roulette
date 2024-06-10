@@ -6,6 +6,20 @@
   <title>Withdraw Money</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+<style>
+  body {
+    font-family: 'Ubuntu', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #161c26; /* Темно-синий фон */
+    margin: 0;
+    overflow-x: hidden; /* Отключить горизонтальную прокрутку */
+    color: white;
+  }
+</style>
 <body>
   <h1>Convert to TON</h1>
   <div id="balance-container">
@@ -13,7 +27,7 @@
       <span id="money-amount">1</span>
       <img id="money-icon" src="money.png" alt="Деньги">
       =
-      <span id="ton-amount">1</span>
+      <span id="ton-amount">0,1</span>
       <img id="ton-icon" src="ton.png" alt="TON">
     </div>
   </div>
@@ -21,7 +35,7 @@
     <input type="range" id="withdraw-slider" min="1" max="100" value="1">
     <span id="withdraw-value">1</span>
   </div>
-  <button id="withdraw-button">Withdraw TON</button>
+  <button id="withdraw-button">Withdraw TON✅</button>
   <button onclick="window.location.href='index.html'">Back to game</button>
 
   <script>

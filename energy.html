@@ -7,16 +7,18 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden; /* Отключить горизонтальную прокрутку */
-    }
+body {
+  font-family: 'Ubuntu', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #161c26; /* Темно-синий фон */
+  margin: 0;
+  overflow-x: hidden; /* Отключить горизонтальную прокрутку */
+  color: white;
+}
 
     #game-area {
     position: relative;
@@ -26,8 +28,8 @@
     border: none;
     overflow: hidden;
     margin: 0 auto; /* Центрирование игровой области по горизонтали */
-    background-color: #5fa1e7; /* Цвет фона игровой области (цвет кнопок) */
-    border-radius: 10px; /* Скругленные края */
+    background-color: #ffffff; /* Цвет фона игровой области (цвет кнопок) */
+    border-radius: 40px; /* Скругленные края */
     }
 
     .energy {
@@ -46,7 +48,7 @@
 </style>
 <body>
   <h1>ENERGY DROP</h1>
-  <button id="start-button">Start</button>
+  <button id="start-button">Voltage!⚠️</button>
   <button onclick="window.location.href='index.html'">Back to game</button>
   <div id="energy-counter">Energy: 0</div>
   <div id="game-area"></div>

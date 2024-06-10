@@ -17,7 +17,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #001f3f; /* Темно-синий фон */
+  background-color: #161c26; /* Темно-синий фон */
   margin: 0;
   overflow-x: hidden; /* Отключить горизонтальную прокрутку */
   color: white;
@@ -38,13 +38,13 @@ body {
   transition: visibility 0s, opacity 0.5s;
 }
 #overlay.win {
-  background-color: rgba(0, 255, 0, 0.5);
+  background-color: rgba(102, 255, 94, 0.5);
 }
 #overlay.loose {
-  background-color: rgba(255, 0, 0, 0.5);
+  background-color: rgba(255, 75, 75, 0.5);
 }
 #overlay.draw {
-  background-color: rgba(0, 0, 255, 0.5);
+  background-color: rgba(0, 123, 255, 0.5);
 }
 #game {
   display: flex;
@@ -64,8 +64,21 @@ button {
   transition: background-color 0.3s;
 }
 button:hover {
-  background-color: #0099cc; /* Более темный голубой при наведении */
+  background-color: #5bd6ff; /* Более темный голубой при наведении */
 }
+
+#energybutton {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 40px;
+  border: none;
+  background-color: #00aaff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
 #result {
   font-size: 24px;
   font-weight: bold;
@@ -85,7 +98,7 @@ button:hover {
   margin: 10px;
 }
 .shake {
-  animation: shake 0.5s;
+  animation: shake 0.4s;
   animation-iteration-count: 3;
 }
 @keyframes shake {
@@ -110,6 +123,19 @@ button:hover {
   height: 40px;
   vertical-align: middle;
 }
+
+.game-window {
+  background-color: rgb(255, 255, 255); /* Белый цвет окна */
+  padding: 20px;
+  border-radius: 40px; /* Скругление углов */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
+  text-align: center;
+}
+
+.menu {
+  display: inline;
+}
+
 #bet-area {
   display: flex;
   align-items: center;
@@ -134,46 +160,7 @@ button:hover {
 #history:hover {
   background-color: #0099cc; /* Более темный голубой при наведении */
 }
-#rating-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 500px;
-  margin-top: 20px;
-  text-align: center;
-  border-radius: 50px;
-}
 
-#rating-image {
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-}
-
-#rating {
-  width: 100%;
-  height: 30px;
-  -webkit-appearance: none;
-  appearance: none;
-  border: none;
-  background-color: #ccc; /* Серая цвет фона шкалы */
-  border-radius: 15px; /* Скругление углов шкалы */
-}
-
-#rating::-webkit-progress-value {
-  background-color: #00aaff; /* Голубой цвет прогресса */
-  border-radius: 15px; /* Скругление углов прогресса */
-}
-
-#rating::-moz-progress-bar {
-  background-color: #00aaff; /* Голубой цвет прогресса */
-  border-radius: 15px; /* Скругление углов прогресса */
-}
-
-#rating-message {
-  margin-top: 10px;
-  font-size: 16px;
-}
 @media (max-width: 600px) {
   /* Стили для мобильных устройств */
   #content {
@@ -184,32 +171,38 @@ button:hover {
 
 </head>
 <body>
-  <h1>Rock Paper Scissors</h1>
+  <h1>ROCK PAPER SCISSORS</h1>
   <div id="balance-container">
     <div id="balance">Balance: <span id="balance-amount">100</span><img id="money-icon" src="money.png" alt="Деньги"></div>
+    <div id="balance">Energy: <span id="balance-amount">10</span><img id="energy-icon" src="energy.png" alt="Energy Icon"></div>
   </div>
   <div id="bet-area">
     <input type="range" id="bet" min="1" max="100" value="1">
     <span id="bet-value">1</span>
   </div>
-  <div id="images">
-    <img id="player-choice" src="rock.png" alt="Player Choice">
-    <img id="computer-choice" src="rock.png" alt="Computer Choice">
-  </div>
-  <div id="game">
-    <button onclick="playGame('rock')">Rock</button>
-    <button onclick="playGame('paper')">Paper</button>
-    <button onclick="playGame('scissors')">Scissors</button>
+  <div class="game-window">
+    <div id="images">
+      <img id="player-choice" src="rock.png" alt="Player Choice">
+      <img id="computer-choice" src="rock.png" alt="Computer Choice">
+    </div>
+    <div id="game">
+      <button onclick="playGame('rock')">Rock🏔️</button>
+      <button onclick="playGame('paper')">Paper🧻</button>
+      <button onclick="playGame('scissors')">Scissors✂️</button>
+    </div>
   </div>
   <p id="result"></p>
   <div id="overlay"></div>
-  <button id="history" onclick="window.location.href='history.html'">View history</button>
-  <button onclick="window.location.href='withdraw.html'">Withdraw</button>
-  <button onclick="window.location.href='energy.html'">ENERY DROP</button>
+
+  <div id="menu">
+    <button id="energybutton" onclick="window.location.href='energy.html'">ENERGY DROP⚡</button>
+    <button id="tasksbutton" onclick="window.location.href='tasks.html'">Tasks✔️</button>
+    <button id="history" onclick="window.location.href='history.html'">History📈</button>
+    <button onclick="window.location.href='withdraw.html'">Withdraw💼</button>
+  </div>
+
   <div id="rating-container">
     <img id="rating-image" src="bronze.png" alt="Rating Image">
-    <progress id="rating" value="0" max="40"></progress>
-    <p id="rating-message"><span id="current-rating">No rating</span><span id="remaining-games"></span></p>
   </div>
 
   <script>
@@ -307,6 +300,29 @@ function showOverlay(result) {
   }, 1000); // Оверлей будет виден 1 секунду
 }
 
+// Функция для загрузки данных пользователя из localStorage
+function loadUserData() {
+  const userData = JSON.parse(localStorage.getItem('userData'));
+  if (userData) {
+    balance = userData.balance;
+    wins = userData.wins;
+    rank = userData.rank;
+    document.getElementById('balance-amount').innerText = `$${balance}`;
+    // Обновление рейтинга пользователя
+    updateRating();
+  }}
+
+function updateBalance(result, bet) {
+  if (result === 'win') {
+    balance += bet;
+    wins++;
+  } else if (result === 'loose') {
+    balance -= bet;
+  }
+  document.getElementById('balance-amount').innerText = `$${balance}`;
+  document.getElementById('wins-count').innerText = wins;
+}
+
 function updateBalance(result, bet) {
   if (result === 'win') {
     balance += bet;
@@ -314,17 +330,13 @@ function updateBalance(result, bet) {
     balance -= bet;
   }
   document.getElementById('balance-amount').innerText = `$${balance}`;
-}
 
-function addHistoryItem(playerChoice, computerChoice, result) {
-  const item = {
-    playerChoice,
-    computerChoice,
-    result,
-    timestamp: new Date().toLocaleString()
+  // Сохраняем обновленный баланс в localStorage
+  const userData = {
+    balance: balance,
+    wins: wins
   };
-  gameHistory.push(item);
-  localStorage.setItem('gameHistory', JSON.stringify(gameHistory));
+  localStorage.setItem('userData', JSON.stringify(userData));
 }
 
 function updateRating() {
@@ -363,6 +375,7 @@ function updateRatingMessage() {
     currentRating.textContent = 'No rating';
   }
 }
+
 function toggleLanguage(checked) {
   const englishElements = document.querySelectorAll('.lang-en');
 

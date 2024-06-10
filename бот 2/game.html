@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSFail Roulette</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <main>
+            <div class="balance">
+                <span>Баланс: 0</span>
+            </div>
+            <div class="roulette">
+                <div class="bet">
+                    <label for="bet-amount">Введите сумму</label>
+                    <input type="number" id="bet-amount" value="0.25" step="0.01">
+                    <div class="bet-buttons">
+                        <button class="bet-btn" data-amount="0.25">0.25</button>
+                        <button class="bet-btn" data-amount="5">5</button>
+                        <button class="bet-btn" data-amount="10">10</button>
+                        <button class="bet-btn" data-amount="MAX">MAX</button>
+                    </div>
+                    <button class="place-bet-button">Ставка</button>
+                </div>
+            </div>
+            <div class="timer">Следующая игра через: <span id="timer">20</span> секунд</div>
+            <div class="roulette-board">
+                <div class="center-line"></div>
+                <div class="slots-wrapper">
+                    <div class="slots">
+                        <!-- Слоты будут динамически добавляться здесь -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="result-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <p id="result-text">Победитель: </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

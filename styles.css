@@ -104,8 +104,14 @@ button:hover {
   margin-top: 10px;
 }
 
-#money-icon, #ton-icon {
-  width: 30px;
+#money-icon {
+  width: 45px;
+  height: 50px;
+  vertical-align: middle;
+}
+
+#ton-icon {
+  width: 40px;
   height: 40px;
   vertical-align: middle;
 }
@@ -141,46 +147,13 @@ button:hover {
 #history:hover {
   background-color: #0099cc; /* Более темный голубой при наведении */
 }
-#rating-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 500px;
-  margin-top: 20px;
-  text-align: center;
-  border-radius: 50px;
-}
 
 #rating-image {
   width: 50px;
   height: 50px;
-  margin-right: 10px;
+  margin-top: 20px;
 }
 
-#rating {
-  width: 100%;
-  height: 30px;
-  -webkit-appearance: none;
-  appearance: none;
-  border: none;
-  background-color: #ccc; /* Серая цвет фона шкалы */
-  border-radius: 15px; /* Скругление углов шкалы */
-}
-
-#rating::-webkit-progress-value {
-  background-color: #00aaff; /* Голубой цвет прогресса */
-  border-radius: 15px; /* Скругление углов прогресса */
-}
-
-#rating::-moz-progress-bar {
-  background-color: #00aaff; /* Голубой цвет прогресса */
-  border-radius: 15px; /* Скругление углов прогресса */
-}
-
-#rating-message {
-  margin-top: 10px;
-  font-size: 16px;
-}
 @media (max-width: 600px) {
   /* Стили для мобильных устройств */
   #content {

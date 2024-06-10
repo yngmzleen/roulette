@@ -6,15 +6,16 @@
   <title>Game History</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Ubuntu', Arial, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      background-color: #f0f0f0;
+      background-color: #161c26; /* Темно-синий фон */
       margin: 0;
-      overflow: hidden;
+      overflow-x: hidden; /* Отключить горизонтальную прокрутку */
+      color: white;
     }
     #history {
       width: 100%;
@@ -41,10 +42,15 @@
       background-color: blue;
     }
     button {
-      margin-top: 20px;
+      margin: 5px;
       padding: 10px 20px;
       font-size: 16px;
       border-radius: 40px;
+      border: none;
+      background-color: #00aaff; /* Голубой цвет кнопок */
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
   </style>
 </head>
