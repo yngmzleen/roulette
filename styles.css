@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Ubuntu', Arial, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f0f0f0;
+  background-color: #001f3f; /* Темно-синий фон */
   margin: 0;
-  overflow-x: hidden; /* Disable horizontal scrolling */
+  overflow-x: hidden; /* Отключить горизонтальную прокрутку */
+  color: white;
 }
 #overlay {
   position: fixed;
@@ -44,6 +47,14 @@ button {
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 40px;
+  border: none;
+  background-color: #00aaff; /* Голубой цвет кнопок */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+button:hover {
+  background-color: #0099cc; /* Более темный голубой при наведении */
 }
 #result {
   font-size: 24px;
@@ -74,9 +85,20 @@ button {
   75% { transform: translateY(10px); }
   100% { transform: translateY(0); }
 }
-#balance {
+#balance-container {
   font-size: 24px;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+#balance {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+#balance img {
+  width: 30px;
+  height: 40px;
+  vertical-align: middle;
 }
 #bet-area {
   display: flex;
@@ -97,29 +119,58 @@ button {
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 40px;
+  border: none;
+  background-color: #00aaff; /* Голубой цвет кнопок */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#history:hover {
+  background-color: #0099cc; /* Более темный голубой при наведении */
 }
 #rating-container {
+  display: flex;
+  align-items: center;
   width: 100%;
   max-width: 500px;
   margin-top: 20px;
   text-align: center;
+  border-radius: 50px;
 }
+
+#rating-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
 #rating {
   width: 100%;
   height: 30px;
-  border-radius: 50px;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  background-color: #ccc; /* Серая цвет фона шкалы */
+  border-radius: 15px; /* Скругление углов шкалы */
 }
+
+#rating::-webkit-progress-value {
+  background-color: #00aaff; /* Голубой цвет прогресса */
+  border-radius: 15px; /* Скругление углов прогресса */
+}
+
+#rating::-moz-progress-bar {
+  background-color: #00aaff; /* Голубой цвет прогресса */
+  border-radius: 15px; /* Скругление углов прогресса */
+}
+
 #rating-message {
   margin-top: 10px;
   font-size: 16px;
 }
-#rating-image {
-  width: 50px;
-  height: 50px;
-}
 @media (max-width: 600px) {
-  /* Styles for mobile devices */
+  /* Стили для мобильных устройств */
   #content {
-    padding: 10px; /* Add padding for mobile devices */
+    padding: 10px; /* Добавить отступы для мобильных устройств */
   }
 }

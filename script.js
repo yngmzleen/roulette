@@ -91,7 +91,7 @@ function updateBalance(result, bet) {
   } else if (result === 'loose') {
     balance -= bet;
   }
-  document.getElementById('balance').innerText = `Balance: $${balance}`;
+  document.getElementById('balance-amount').innerText = `$${balance}`;
 }
 
 function addHistoryItem(playerChoice, computerChoice, result) {
@@ -123,7 +123,6 @@ function updateRating() {
     ratingImage.src = 'bronze.png';
   } else {
     rating.value = 0;
-    ratingImage.src = 'Выиграйте 1 игру!'; 
   }
 }
 
@@ -132,19 +131,14 @@ function updateRatingMessage() {
   const remainingGames = document.getElementById('remaining-games');
   if (wins >= 4) {
     currentRating.textContent = 'Brilliant';
-    remainingGames.textContent = '0';
   } else if (wins >= 3) {
     currentRating.textContent = 'Gold';
-    remainingGames.textContent = 4 - wins;
   } else if (wins >= 2) {
     currentRating.textContent = 'Silver';
-    remainingGames.textContent = 3 - wins;
   } else if (wins >= 1) {
     currentRating.textContent = 'Bronze';
-    remainingGames.textContent = 2 - wins;
   } else {
     currentRating.textContent = 'No rating';
-    remainingGames.textContent = 1 - wins;
   }
 }
 function toggleLanguage(checked) {

@@ -14,7 +14,9 @@
 </head>
 <body>
   <h1>Rock Paper Scissors</h1>
-  <div id="balance">Balance: $100</div>
+  <div id="balance-container">
+    <div id="balance">Balance: <span id="balance-amount">100</span><img id="money-icon" src="money.png" alt="Деньги"></div>
+  </div>
   <div id="bet-area">
     <input type="number" id="bet" placeholder="Bet amount" min="1">
   </div>
@@ -33,7 +35,7 @@
   <div id="rating-container">
     <img id="rating-image" src="bronze.png" alt="Rating Image">
     <progress id="rating" value="0" max="40"></progress>
-    <p id="rating-message">Your rating: <span id="current-rating">No rating</span>. Play <span id="remaining-games">3</span> more games to reach the next level.</p>
+    <p id="rating-message"><span id="current-rating">No rating</span><span id="remaining-games"></span></p>
   </div>
 
   <script src="script.js"></script>
