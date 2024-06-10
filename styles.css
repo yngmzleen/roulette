@@ -91,14 +91,27 @@ button:hover {
   display: flex;
   align-items: center;
 }
+
+#balance-container {
+  font-size: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
 #balance {
   margin-right: 10px;
   margin-top: 10px;
 }
-#balance img {
+
+#money-icon, #ton-icon {
   width: 30px;
   height: 40px;
   vertical-align: middle;
+}
+
+#withdraw-area {
+  margin-bottom: 20px;
 }
 #bet-area {
   display: flex;

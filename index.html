@@ -112,17 +112,13 @@ button:hover {
 }
 #bet-area {
   display: flex;
-  justify-content: center;
   align-items: center;
   margin-bottom: 20px;
 }
-#bet-area input {
+
+#bet {
+  width: 100%;
   margin-right: 10px;
-  padding: 5px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 100px;
 }
 #history {
   margin-top: 20px;
@@ -193,7 +189,8 @@ button:hover {
     <div id="balance">Balance: <span id="balance-amount">100</span><img id="money-icon" src="money.png" alt="Деньги"></div>
   </div>
   <div id="bet-area">
-    <input type="number" id="bet" placeholder="Bet amount" min="1">
+    <input type="range" id="bet" min="1" max="100" value="1">
+    <span id="bet-value">1</span>
   </div>
   <div id="images">
     <img id="player-choice" src="rock.png" alt="Player Choice">
@@ -207,6 +204,7 @@ button:hover {
   <p id="result"></p>
   <div id="overlay"></div>
   <button id="history" onclick="window.location.href='history.html'">View history</button>
+  <button onclick="window.location.href='withdraw.html'">Withdraw</button>
   <div id="rating-container">
     <img id="rating-image" src="bronze.png" alt="Rating Image">
     <progress id="rating" value="0" max="40"></progress>
@@ -217,6 +215,13 @@ button:hover {
     let balance = 100;
 let gameHistory = [];
 let wins = 0;
+
+const betSlider = document.getElementById('bet');
+const betValueDisplay = document.getElementById('bet-value');
+
+betSlider.addEventListener('input', function() {
+  betValueDisplay.textContent = this.value;
+});
 
 function playGame(playerChoice) {
   const bet = Number(document.getElementById('bet').value);
@@ -250,7 +255,7 @@ function playGame(playerChoice) {
 
     // Определить и показать результат
     const result = determineWinner(playerChoice, computerChoice);
-    document.getElementById('result').innerText = `You chose ${playerChoice}, computer chose ${computerChoice}. ${result}`;
+
 
     // Показать оверлей с результатом
     showOverlay(result);
