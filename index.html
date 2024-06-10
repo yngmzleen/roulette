@@ -13,43 +13,27 @@
 
 </head>
 <body>
-  <h1 class="lang-en">Rock Paper Scissors</h1>
-  <h1 class="lang-ru">Камень Ножницы Бумага</h1>
-  <div id="language-toggle">
-    <label for="language">Language:</label>
-    <input type="checkbox" id="language" class="ios-toggle" onchange="toggleLanguage(this.checked)" checked>
-    <span class="lang-en">English</span>
-    <span class="lang-ru">Русский</span>
-  </div>
-  <div id="balance" class="lang-en">Balance: $100</div>
-  <div id="balance" class="lang-ru">Баланс: $100</div>
-  <div id="bet-area" class="lang-en">
+  <h1>Rock Paper Scissors</h1>
+  <div id="balance">Balance: $100</div>
+  <div id="bet-area">
     <input type="number" id="bet" placeholder="Bet amount" min="1">
-  </div>
-  <div id="bet-area" class="lang-ru">
-    <input type="number" id="bet" placeholder="Ставка" min="1">
   </div>
   <div id="images">
     <img id="player-choice" src="rock.png" alt="Player Choice">
     <img id="computer-choice" src="rock.png" alt="Computer Choice">
   </div>
   <div id="game">
-    <button onclick="playGame('rock')" class="lang-en">Rock</button>
-    <button onclick="playGame('paper')" class="lang-en">Paper</button>
-    <button onclick="playGame('scissors')" class="lang-en">Scissors</button>
-    <button onclick="playGame('rock')" class="lang-ru">Камень</button>
-    <button onclick="playGame('paper')" class="lang-ru">Бумага</button>
-    <button onclick="playGame('scissors')" class="lang-ru">Ножницы</button>
+    <button onclick="playGame('rock')">Rock</button>
+    <button onclick="playGame('paper')">Paper</button>
+    <button onclick="playGame('scissors')">Scissors</button>
   </div>
-  <p id="result" class="lang-en"></p>
-  <p id="result" class="lang-ru"></p>
+  <p id="result"></p>
   <div id="overlay"></div>
   <button id="history" onclick="window.location.href='history.html'">View history</button>
   <div id="rating-container">
     <img id="rating-image" src="bronze.png" alt="Rating Image">
     <progress id="rating" value="0" max="40"></progress>
-    <p id="rating-message" class="lang-en">Your rating: <span id="current-rating">No rating</span>. Play <span id="remaining-games">3</span> more games to reach the next level.</p>
-    <p id="rating-message" class="lang-ru">Ваш рейтинг: <span id="current-rating">Нет рейтинга</span>. Сыграйте еще <span id="remaining-games">3</span> игры, чтобы перейти на следующий уровень.</p>
+    <p id="rating-message">Your rating: <span id="current-rating">No rating</span>. Play <span id="remaining-games">3</span> more games to reach the next level.</p>
   </div>
 
   <script src="script.js"></script>

@@ -149,7 +149,7 @@ function updateRatingMessage() {
 }
 function toggleLanguage(checked) {
   const englishElements = document.querySelectorAll('.lang-en');
-  const russianElements = document.querySelectorAll('.lang-ru');
+
 
   if (checked) {
     // Скрываем английский текст и показываем русский
