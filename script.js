@@ -3,9 +3,10 @@ let gameHistory = [];
 let wins = 0;
 
 function playGame(playerChoice) {
-  const bet = parseInt(document.getElementById('bet').value);
+  const bet = Number(document.getElementById('bet').value);
   if (isNaN(bet) || bet < 1 || bet > balance) {
-    alert('Please enter a valid bet amount within your balance.');
+    const message = languageCheckbox.checked ? 'Please enter a valid bet amount within your balance.' : 'Пожалуйста, введите действительную сумму ставки в пределах вашего баланса.';
+    alert(message);
     return;
   }
 
@@ -106,42 +107,44 @@ function addHistoryItem(playerChoice, computerChoice, result) {
 
 function updateRating() {
   const rating = document.getElementById('rating');
-  if (wins >= 40) {
-    rating.value = 40;
-    rating.style.backgroundColor = 'blue';
-  } else if (wins >= 30) {
-    rating.value = 30;
-    rating.style.backgroundColor = 'yellow';
-  } else if (wins >= 20) {
-    rating.value = 20;
-    rating.style.backgroundColor = 'silver';
-  } else if (wins >= 10) {
-    rating.value = 10;
-    rating.style.backgroundColor = 'orange';
+  const ratingImage = document.getElementById('rating-image');
+
+  if (wins >= 4) {
+    rating.value = 4;
+    ratingImage.src = 'brilliant.png';
+  } else if (wins >= 3) {
+    rating.value = 3;
+    ratingImage.src = 'gold.png';
+  } else if (wins >= 2) {
+    rating.value = 2;
+    ratingImage.src = 'silver.png';
+  } else if (wins >= 1) {
+    rating.value = 1;
+    ratingImage.src = 'bronze.png';
   } else {
     rating.value = 0;
-    rating.style.backgroundColor = 'gray';
+    ratingImage.src = 'Выиграйте 1 игру!'; 
   }
 }
 
 function updateRatingMessage() {
   const currentRating = document.getElementById('current-rating');
   const remainingGames = document.getElementById('remaining-games');
-  if (wins >= 40) {
+  if (wins >= 4) {
     currentRating.textContent = 'Brilliant';
     remainingGames.textContent = '0';
-  } else if (wins >= 30) {
+  } else if (wins >= 3) {
     currentRating.textContent = 'Gold';
-    remainingGames.textContent = 40 - wins;
-  } else if (wins >= 20) {
+    remainingGames.textContent = 4 - wins;
+  } else if (wins >= 2) {
     currentRating.textContent = 'Silver';
-    remainingGames.textContent = 30 - wins;
-  } else if (wins >= 10) {
+    remainingGames.textContent = 3 - wins;
+  } else if (wins >= 1) {
     currentRating.textContent = 'Bronze';
-    remainingGames.textContent = 20 - wins;
+    remainingGames.textContent = 2 - wins;
   } else {
     currentRating.textContent = 'No rating';
-    remainingGames.textContent = 10 - wins;
+    remainingGames.textContent = 1 - wins;
   }
 }
 function toggleLanguage(checked) {
@@ -157,11 +160,34 @@ function toggleLanguage(checked) {
     englishElements.forEach(element => element.style.display = 'block');
     russianElements.forEach(element => element.style.display = 'none');
   }
+
+  // Сохраняем состояние чекбокса в localStorage
+  localStorage.setItem('language', checked ? 'en' : 'ru');
+
+  // Обновляем все текстовые элементы
+  updateTextElements();
 }
-// Загрузить историю из localStorage при загрузке страницы
+
+// Проверяем состояние чекбокса при загрузке страницы
 window.onload = function() {
-const storedHistory = localStorage.getItem('gameHistory');
-if (storedHistory) {
-gameHistory = JSON.parse(storedHistory);
-}
+  const language = localStorage.getItem('language') || 'en';
+  const languageCheckbox = document.getElementById('language');
+  languageCheckbox.checked = language === 'en';
+  toggleLanguage(languageCheckbox.checked);
+};
+
+// Функция для обновления всех текстовых элементов
+function updateTextElements() {
+  const englishElements = document.querySelectorAll('.lang-en');
+  const russianElements = document.querySelectorAll('.lang-ru');
+
+  if (languageCheckbox.checked) {
+    // Скрываем английский текст и показываем русский
+    englishElements.forEach(element => element.style.display = 'none');
+    russianElements.forEach(element => element.style.display = 'block');
+  } else {
+    // Скрываем русский текст и показываем английский
+    englishElements.forEach(element => element.style.display = 'block');
+    russianElements.forEach(element => element.style.display = 'none');
+  }
 }

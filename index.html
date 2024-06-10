@@ -18,7 +18,7 @@
   <h1 class="lang-ru">Камень Ножницы Бумага</h1>
   <div id="language-toggle">
     <label for="language">Language:</label>
-    <input type="checkbox" id="language" class="ios-toggle" onchange="toggleLanguage(this.checked)">
+    <input type="checkbox" id="language" class="ios-toggle" onchange="toggleLanguage(this.checked)" checked>
     <span class="lang-en">English</span>
     <span class="lang-ru">Русский</span>
   </div>
@@ -47,12 +47,14 @@
   <div id="overlay"></div>
   <button id="history" onclick="window.location.href='history.html'">View history</button>
   <div id="rating-container">
+    <img id="rating-image" src="bronze.png" alt="Rating Image">
     <progress id="rating" value="0" max="40"></progress>
     <p id="rating-message" class="lang-en">Your rating: <span id="current-rating">No rating</span>. Play <span id="remaining-games">3</span> more games to reach the next level.</p>
     <p id="rating-message" class="lang-ru">Ваш рейтинг: <span id="current-rating">Нет рейтинга</span>. Сыграйте еще <span id="remaining-games">3</span> игры, чтобы перейти на следующий уровень.</p>
   </div>
 
   <script src="script.js"></script>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   
 </body>
 </html>
