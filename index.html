@@ -214,6 +214,10 @@ button:hover {
 </footer>
 
   <script>
+window.onload = function() {
+  loadUserData();
+};
+
     let balance = 100;
 let gameHistory = [];
 let wins = 0;
@@ -308,32 +312,10 @@ function showOverlay(result) {
   }, 1000); // Оверлей будет виден 1 секунду
 }
 
-// Функция для загрузки данных пользователя из localStorage
-function loadUserData() {
-  const userData = JSON.parse(localStorage.getItem('userData'));
-  if (userData) {
-    balance = userData.balance;
-    wins = userData.wins;
-    rank = userData.rank;
-    document.getElementById('balance-amount').innerText = `$${balance}`;
-    // Обновление рейтинга пользователя
-    updateRating();
-  }}
-
 function updateBalance(result, bet) {
   if (result === 'win') {
     balance += bet;
     wins++;
-  } else if (result === 'loose') {
-    balance -= bet;
-  }
-  document.getElementById('balance-amount').innerText = `$${balance}`;
-  document.getElementById('wins-count').innerText = wins;
-}
-
-function updateBalance(result, bet) {
-  if (result === 'win') {
-    balance += bet;
   } else if (result === 'loose') {
     balance -= bet;
   }
@@ -346,6 +328,30 @@ function updateBalance(result, bet) {
   };
   localStorage.setItem('userData', JSON.stringify(userData));
 }
+
+function loadUserData() {
+  const userData = JSON.parse(localStorage.getItem('userData'));
+  if (userData) {
+    balance = userData.balance;
+    wins = userData.wins;
+    document.getElementById('balance-amount').innerText = `$${balance}`;
+    // Обновление рейтинга пользователя
+    updateRating();
+  }
+}
+
+function updateBalance(result, bet) {
+  if (result === 'win') {
+    balance += bet;
+    wins++;
+  } else if (result === 'loose') {
+    balance -= bet;
+  }
+  document.getElementById('balance-amount').innerText = `$${balance}`;
+  document.getElementById('wins-count').innerText = wins;
+}
+
+
 
 function updateRating() {
   const rating = document.getElementById('rating');
