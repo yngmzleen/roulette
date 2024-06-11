@@ -167,11 +167,21 @@ button:hover {
     padding: 10px; /* Добавить отступы для мобильных устройств */
   }
 }
+
+.header {
+  position: fixed;
+}
+
+.footer {
+  position: fixed;
+}
 </style>
 
 </head>
-<body>
+<header>  
   <h1>ROCK PAPER SCISSORS</h1>
+</header>
+<body>
   <div id="balance-container">
     <div id="balance">Balance: <span id="balance-amount">100</span><img id="money-icon" src="money.png" alt="Деньги"></div>
     <div id="balance">Energy: <span id="balance-amount">10</span><img id="energy-icon" src="energy.png" alt="Energy Icon"></div>
@@ -194,16 +204,15 @@ button:hover {
   <p id="result"></p>
   <div id="overlay"></div>
 
-  <div id="menu">
-    <button id="energybutton" onclick="window.location.href='energy.html'">ENERGY DROP⚡</button>
-    <button id="tasksbutton" onclick="window.location.href='tasks.html'">Tasks✔️</button>
-    <button id="history" onclick="window.location.href='history.html'">History📈</button>
-    <button onclick="window.location.href='withdraw.html'">Withdraw💼</button>
-  </div>
 
-  <div id="rating-container">
-    <img id="rating-image" src="bronze.png" alt="Rating Image">
-  </div>
+<footer>
+    <div id="menu">
+      <button id="energybutton" onclick="window.location.href='energy.html'">ENERGY DROP⚡</button>
+      <button id="tasksbutton" onclick="window.location.href='tasks.html'">Tasks✔️</button>
+      <button id="history" onclick="window.location.href='history.html'">History📈</button>
+      <button onclick="window.location.href='withdraw.html'">Withdraw💼</button>
+    </div>
+</footer>
 
   <script>
     let balance = 100;
