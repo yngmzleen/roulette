@@ -316,7 +316,7 @@ function updateBalance(result, bet) {
   } else if (result === 'loose') {
     balance -= bet;
   }
-  document.getElementById('balance-amount').innerText = `$${balance}`;
+  document.getElementById('balance-amount').innerText = `${balance}`;
 
   // Сохраняем обновленный баланс в localStorage
   const userData = {
