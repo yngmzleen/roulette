@@ -331,7 +331,7 @@ function loadUserData() {
   if (userData) {
     balance = userData.balance;
     wins = userData.wins;
-    document.getElementById('balance-amount').innerText = `$${balance}`;
+    document.getElementById('balance-amount').innerText = `${balance}`;
     // Обновление рейтинга пользователя
     updateRating();
   }
@@ -344,7 +344,7 @@ function updateBalance(result, bet) {
   } else if (result === 'loose') {
     balance -= bet;
   }
-  document.getElementById('balance-amount').innerText = `$${balance}`;
+  document.getElementById('balance-amount').innerText = `${balance}`;
   document.getElementById('wins-count').innerText = wins;
 }
 
