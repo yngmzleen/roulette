@@ -20,11 +20,10 @@ body {
   margin: 0;
   overflow-x: hidden; /* Отключить горизонтальную прокрутку */
   color: white;
-  background: url('background.jpg') no-repeat center center fixed;
-  background-size: cover;
-  transition: background-position 0.1s ease-out;
+  background: url('background.jpg');
+  background-size: 80%;
+  
 }
-
 #overlay {
   position: fixed;
   top: 0;
@@ -40,26 +39,21 @@ body {
   opacity: 0;
   transition: visibility 0s, opacity 0.5s;
 }
-
 #overlay.win {
   background-color: rgba(102, 255, 94, 0.5);
 }
-
 #overlay.loose {
   background-color: rgba(255, 75, 75, 0.5);
 }
-
 #overlay.draw {
   background-color: rgba(0, 123, 255, 0.5);
 }
-
 #game {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
   flex-wrap: wrap;
 }
-
 button {
   margin: 5px;
   padding: 10px 20px;
@@ -71,7 +65,6 @@ button {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 button:hover {
   background-color: #5bd6ff; /* Более темный голубой при наведении */
 }
@@ -82,7 +75,6 @@ button:hover {
   margin-top: 20px;
   text-align: center;
 }
-
 #images {
   display: flex;
   justify-content: center;
@@ -90,18 +82,15 @@ button:hover {
   margin-bottom: 20px;
   flex-wrap: wrap;
 }
-
 #player-choice, #computer-choice {
   width: 100px;
   height: 100px;
   margin: 10px;
 }
-
 .shake {
   animation: shake 0.4s;
   animation-iteration-count: 3;
 }
-
 @keyframes shake {
   0% { transform: translateY(0); }
   25% { transform: translateY(-10px); }
@@ -109,19 +98,16 @@ button:hover {
   75% { transform: translateY(10px); }
   100% { transform: translateY(0); }
 }
-
 #balance-container {
   font-size: 24px;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
 }
-
 #balance {
   margin-right: 10px;
   margin-top: 10px;
 }
-
 #balance img {
   width: 30px;
   height: 30px;
@@ -150,7 +136,6 @@ button:hover {
   width: 100%;
   margin-right: 10px;
 }
-
 #history {
   margin-top: 20px;
   padding: 10px 20px;
@@ -162,7 +147,6 @@ button:hover {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 #history:hover {
   background-color: #0099cc; /* Более темный голубой при наведении */
 }
@@ -219,23 +203,7 @@ button:hover {
   <script>
 window.onload = function() {
   loadUserData();
-  window.addEventListener('deviceorientation', handleOrientation);
 };
-
-function handleOrientation(event) {
-  const gamma = event.gamma; // Наклон влево-вправо
-  const beta = event.beta; // Наклон вперед-назад
-
-  // Ограничим значения gamma и beta, чтобы избежать слишком больших смещений
-  const clampedGamma = Math.min(Math.max(gamma, -45), 45);
-  const clampedBeta = Math.min(Math.max(beta, -45), 45);
-
-  // Преобразуем значения в проценты для CSS
-  const bgPosX = (clampedGamma / 45) * 50;
-  const bgPosY = (clampedBeta / 45) * 50;
-
-  document.body.style.backgroundPosition = `${50 + bgPosX}% ${50 + bgPosY}%`;
-}
 
     let balance = 100;
 let gameHistory = [];
@@ -371,3 +339,89 @@ function updateBalance(result, bet) {
 }
 
 
+
+function updateRating() {
+  const rating = document.getElementById('rating');
+  const ratingImage = document.getElementById('rating-image');
+
+  if (wins >= 4) {
+    rating.value = 4;
+    ratingImage.src = 'brilliant.png';
+  } else if (wins >= 3) {
+    rating.value = 3;
+    ratingImage.src = 'gold.png';
+  } else if (wins >= 2) {
+    rating.value = 2;
+    ratingImage.src = 'silver.png';
+  } else if (wins >= 1) {
+    rating.value = 1;
+    ratingImage.src = 'bronze.png';
+  } else {
+    rating.value = 0;
+  }
+}
+
+function updateRatingMessage() {
+  const currentRating = document.getElementById('current-rating');
+  const remainingGames = document.getElementById('remaining-games');
+  if (wins >= 4) {
+    currentRating.textContent = 'Brilliant';
+  } else if (wins >= 3) {
+    currentRating.textContent = 'Gold';
+  } else if (wins >= 2) {
+    currentRating.textContent = 'Silver';
+  } else if (wins >= 1) {
+    currentRating.textContent = 'Bronze';
+  } else {
+    currentRating.textContent = 'No rating';
+  }
+}
+
+function toggleLanguage(checked) {
+  const englishElements = document.querySelectorAll('.lang-en');
+
+
+  if (checked) {
+    // Скрываем английский текст и показываем русский
+    englishElements.forEach(element => element.style.display = 'none');
+    russianElements.forEach(element => element.style.display = 'block');
+  } else {
+    // Скрываем русский текст и показываем английский
+    englishElements.forEach(element => element.style.display = 'block');
+    russianElements.forEach(element => element.style.display = 'none');
+  }
+
+  // Сохраняем состояние чекбокса в localStorage
+  localStorage.setItem('language', checked ? 'en' : 'ru');
+
+  // Обновляем все текстовые элементы
+  updateTextElements();
+}
+
+// Проверяем состояние чекбокса при загрузке страницы
+window.onload = function() {
+  const language = localStorage.getItem('language') || 'en';
+  const languageCheckbox = document.getElementById('language');
+  languageCheckbox.checked = language === 'en';
+  toggleLanguage(languageCheckbox.checked);
+};
+
+// Функция для обновления всех текстовых элементов
+function updateTextElements() {
+  const englishElements = document.querySelectorAll('.lang-en');
+  const russianElements = document.querySelectorAll('.lang-ru');
+
+  if (languageCheckbox.checked) {
+    // Скрываем английский текст и показываем русский
+    englishElements.forEach(element => element.style.display = 'none');
+    russianElements.forEach(element => element.style.display = 'block');
+  } else {
+    // Скрываем русский текст и показываем английский
+    englishElements.forEach(element => element.style.display = 'block');
+    russianElements.forEach(element => element.style.display = 'none');
+  }
+}
+  </script>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</body>
+</html>
